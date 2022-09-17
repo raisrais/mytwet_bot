@@ -20,4 +20,4 @@ jobs:
       - name: Instal paket ggplot2
         run: Rscript -e 'install.packages("ggplot2", dependencies = TRUE)'
       - name: Eksekusi Script R
-        run: Rscript tweet-bot.R
+        run: Rscript mytwet-bot.R
