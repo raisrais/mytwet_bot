@@ -70,10 +70,10 @@ library(rtweet)
 
 # membaca environment variabel
 twitter_token <- rtweet::rtweet_bot(
-  api_key =    Sys.getenv("KiHuGpHLdO40GMAu043CrYALx"),
-  api_secret = Sys.getenv("oBuQFsw8mBTVL4LMwOSvszy6TquDAUBU4NAGrOZ2olLyV4cYsh"),
-  access_token =    Sys.getenv("1468390199927341062-OVkcixghUFP09gmGasBv0I9J06wwDM"),
-  access_secret =   Sys.getenv("dfLZouFexcezHG9U2mL4aXwGlRc3mUFee6qwH2PGLiuwe")
+  TWITTER_CONSUMER_API_KEY =    Sys.getenv("KiHuGpHLdO40GMAu043CrYALx"),
+  TWITTER_CONSUMER_API_SECRET = Sys.getenv("oBuQFsw8mBTVL4LMwOSvszy6TquDAUBU4NAGrOZ2olLyV4cYsh"),
+  TWITTER_ACCESS_TOKEN =    Sys.getenv("1468390199927341062-OVkcixghUFP09gmGasBv0I9J06wwDM"),
+  TWITTER_ACCESS_TOKEN_SECRET =   Sys.getenv("dfLZouFexcezHG9U2mL4aXwGlRc3mUFee6qwH2PGLiuwe")
 )
 
 # Konten yang akan di-posting
