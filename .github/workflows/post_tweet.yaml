@@ -2,7 +2,7 @@ name: post_tweet
 
 on:
   schedule:
-    - cron: '0 9 1-31 * *'  # Setiap hari jam 9 pagi
+    - cron: '0 7 1-31 * *'  # Setiap hari jam 7 pagi
 
 jobs:
   post-tweet:
@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Instal paket rtweet
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
-      - name: Instal paket ggplot2
-        run: Rscript -e 'install.packages("ggplot2", dependencies = TRUE)'
+      - name: Instal paket rvest
+        run: Rscript -e 'install.packages("rvest", dependencies = TRUE)'
       - name: Eksekusi Script R
         run: Rscript daily_infographic.R
