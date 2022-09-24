@@ -1,4 +1,3 @@
-library(ggplot2)
 library(rvest)
 library(rtweet)
 
@@ -42,13 +41,24 @@ title
 #gsub('\n','',deskripsi)
 
 #link selengkapnya
+library(urlshorteneR)
 link <- html_nodes(webpage,'h1>a')%>%
   html_attr("href")
 link
 
+bitly_shorten_link(
+  domain = "bit.ly",
+  group_guid = NULL,
+  long_url = link,
+  showRequestURL = TRUE
+)
+
+short_link <- bitly_shorten_link(long_url = link, showRequestURL = TRUE)
+short_link$id
+
 status_details <- paste0(
-  title, "\n",
-  link,  "\n",
+  title, ".", "\n",
+  "Please visit ", short_link$id, " for detail.",  "\n",
   "#","dailyinfographic"
 )
 

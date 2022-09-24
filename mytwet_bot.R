@@ -76,6 +76,18 @@ twitter_token <- rtweet::rtweet_bot(
   access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
 
+library(RPostgreSQL)
+
+drv <- dbDriver("PostgreSQL")
+
+con <- dbConnect(drv,
+                 dbname = Sys.getenv("ELEPHANT_SQL_DBNAME"), 
+                 host = Sys.getenv("ELEPHANT_SQL_HOST"),
+                 port = 5432,
+                 user = Sys.getenv("ELEPHANT_SQL_USER"),
+                 password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
+)
+
 # Konten yang akan di-posting
 if (dist==1) {
   status <- paste("Distribusi Normal(Mean =", mean, ", std =", std, ")\n#SebaranNormal", sep=" ")
@@ -97,3 +109,5 @@ rtweet::post_tweet(
   media_alt_text = alt_text,
   token = twitter_token
 )
+
+on.exit(dbDisconnect(con))
