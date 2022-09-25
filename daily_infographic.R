@@ -22,7 +22,7 @@ con <- dbConnect(drv,
 )
 
 query <- '
-SELECT * FROM "public"."BLU"
+SELECT * FROM "public"."infographic"
 '
 
 data <- dbGetQuery(con, query)
