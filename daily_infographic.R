@@ -21,6 +21,11 @@ con <- dbConnect(drv,
                  password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
 )
 
+query <- '
+SELECT * FROM "public"."BLU"
+'
+
+data <- dbGetQuery(con, query)
 
 # Konten yang akan di-posting
 # Specifying the url for desired website to be scraped
