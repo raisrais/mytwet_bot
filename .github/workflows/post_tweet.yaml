@@ -20,7 +20,7 @@ jobs:
       - name: Instal paket rvest
         run: Rscript -e 'install.packages("rvest", dependencies = TRUE)'
       - name: Instal paket PostgreSQL
-        run: Rscript -e 'install.packages("PostgreSQL", dependencies = TRUE)'
+        run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
       - name: Instal paket urlshorteneR
         run: Rscript -e 'install.packages("urlshorteneR", dependencies = TRUE)'
       - name: Eksekusi Script R
