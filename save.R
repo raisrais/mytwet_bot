@@ -1,7 +1,6 @@
 library(RPostgreSQL)
 
 drv <- dbDriver("PostgreSQL")
-
 con <- dbConnect(drv,
                  dbname = Sys.getenv("ELEPHANT_SQL_DBNAME"), 
                  host = Sys.getenv("ELEPHANT_SQL_HOST"),
