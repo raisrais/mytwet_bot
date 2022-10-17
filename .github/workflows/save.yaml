@@ -17,6 +17,8 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Instal paket rvest
         run: Rscript -e 'install.packages("rvest", dependencies = TRUE)'
+      - name: Instal paket rtweet
+        run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
       - name: Install paket RPostgreSQL
         run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
       - name: Instal paket urlshorteneR
