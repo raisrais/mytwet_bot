@@ -2,7 +2,7 @@ name: Publish
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Setiap hari jam 9 pagi
+    - cron: '0 3 * * *'  # Setiap hari jam 10 pagi
 
 jobs:
   publish-data:
@@ -21,12 +21,8 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Instal paket rtweet
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
-      - name: Instal paket rvest
-        run: Rscript -e 'install.packages("rvest", dependencies = TRUE)'
       - name: Instal paket PostgreSQL
         run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
-      - name: Instal paket urlshorteneR
-        run: Rscript -e 'install.packages("urlshorteneR", dependencies = TRUE)'
       - name: Eksekusi Script publish.R
         run: Rscript publish.R
      # Add new files in data folder, commit along with other modified files, push
