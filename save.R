@@ -1,4 +1,5 @@
 library(RPostgreSQL)
+library(rtweet)
 
 drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv,
