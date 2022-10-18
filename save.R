@@ -33,10 +33,6 @@ url <- 'https://dailyinfographic.com/'
 #Membaca html dari website
 webpage <- read_html(url)
 
-category <- html_nodes(webpage,'.des>.cat>a') %>% 
-  html_text("a")
-category
-
 title <- html_nodes(webpage,'h1>a') %>% 
   html_attr("title")
 title
@@ -59,6 +55,7 @@ bitly_shorten_link(
 
 shorten <- bitly_shorten_link(long_url = link, showRequestURL = TRUE)
 short_link <- as.character(shorten$id)
+short_link
 
 baris <- nrow(data)
 baris
