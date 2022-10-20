@@ -48,7 +48,7 @@ link <- html_nodes(webpage,'h1>a')%>%
 
 bitly_shorten_link(
   domain = "bit.ly",
-  group_guid = NULL,
+  group_guid = "o_3kviv9q8nt",
   long_url = link,
   showRequestURL = TRUE
 )
