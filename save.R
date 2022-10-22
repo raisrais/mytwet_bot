@@ -1,22 +1,13 @@
-library(RPostgreSQL)
+library(rvest)
 library(rtweet)
 
-drv <- dbDriver("PostgreSQL")
-con <- dbConnect(drv,
-                 dbname = Sys.getenv("ELEPHANT_SQL_DBNAME"), 
-                 host = Sys.getenv("ELEPHANT_SQL_HOST"),
-                 port = 5432,
-                 user = Sys.getenv("ELEPHANT_SQL_USER"),
-                 password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
+# membaca environment variabel
+twitter_token <- rtweet::rtweet_bot(
+  api_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
+  api_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
+  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
+  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
-
-# Memanggil Tabel, untuk membuat Primary Key nya berurutan.
-query2 <- '
-SELECT * FROM "public"."INFOGRAPHIC"
-'
-data <- dbGetQuery(con, query2)
-
-library(rvest)
 
 # membaca environment variabel
 twitter_token <- rtweet::rtweet_bot(
@@ -56,6 +47,23 @@ bitly_shorten_link(
 shorten <- bitly_shorten_link(long_url = link, showRequestURL = TRUE)
 short_link <- as.character(shorten$id)
 short_link
+
+library(RPostgreSQL)
+
+drv <- dbDriver("PostgreSQL")
+con <- dbConnect(drv,
+                 dbname = Sys.getenv("ELEPHANT_SQL_DBNAME"), 
+                 host = Sys.getenv("ELEPHANT_SQL_HOST"),
+                 port = 5432,
+                 user = Sys.getenv("ELEPHANT_SQL_USER"),
+                 password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
+)
+
+# Memanggil Tabel, untuk membuat Primary Key nya berurutan.
+query2 <- '
+SELECT * FROM "public"."INFOGRAPHIC"
+'
+data <- dbGetQuery(con, query2)
 
 baris <- nrow(data)
 baris
