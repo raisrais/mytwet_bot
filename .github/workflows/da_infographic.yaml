@@ -2,7 +2,7 @@ name: da_infographic
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # Setiap hari jam 10 pagi
+    - cron: '0 */6 * * *'  # Setiap 6 jam
 
 jobs:
   publish-data:
