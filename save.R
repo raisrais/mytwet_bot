@@ -11,17 +11,17 @@ twitter_token <- rtweet::rtweet_bot(
   access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
 
-bitly_token <-
-  bitly_auth(
-    key = "00b6bd6f036840d1f4cb5e7b0d803f4a6898f7cc",
-    secret = "fb8edd0f81c5b37c4828d1b66c3e29417b8d63b0"
-  )
+#bitly_token <-
+#  bitly_auth(
+#    key = "00b6bd6f036840d1f4cb5e7b0d803f4a6898f7cc",
+#    secret = "fb8edd0f81c5b37c4828d1b66c3e29417b8d63b0"
+#  )
 
 # default variant
-bitly_token <- bitly_auth()
-saveRDS(bitly_token, "bitly_token.rds")
+#bitly_token <- bitly_auth()
+#saveRDS(bitly_token, "bitly_token.rds")
 # for non-interactive use:
-bitly_auth(token = "bitly_token.rds")
+#bitly_auth(token = "bitly_token.rds")
 
 # Konten yang akan di-posting
 url <- 'https://dailyinfographic.com/'
@@ -37,10 +37,10 @@ category <- html_nodes(webpage,'.des>.cat>a') %>%
 link <- html_nodes(webpage,'h1>a')%>%
   html_attr("href")
 
-bitly_token <- bitly_auth()
-saveRDS(bitly_token, "BITLY_ACCESS_TOKEN")
-shorten <- bitly_shorten_link(domain = "bit.ly", group_guid = NULL, long_url = link, showRequestURL = TRUE)
-short_link <- as.character(shorten$id)
+#bitly_token <- bitly_auth()
+#saveRDS(bitly_token, "BITLY_ACCESS_TOKEN")
+#shorten <- bitly_shorten_link(domain = "bit.ly", group_guid = NULL, long_url = link, showRequestURL = TRUE)
+#short_link <- as.character(shorten$id)
 
 drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv,
@@ -65,7 +65,7 @@ if (data$Judul[nrow(data)] != title)
                      Tanggal = Sys.Date(),
                      Judul = title,
                      Kategori = category,
-                     Tautan = short_link)
+                     Tautan = link)
   
   dbWriteTable(conn = con, name = "INFOGRAPHIC", value = data, append = TRUE, row.names = FALSE, overwrite=FALSE)
   
@@ -113,17 +113,17 @@ for (i in 1:12){
     
     category <- categ_cek[i]
     
-    bitly_token <- bitly_auth()
-    saveRDS(bitly_token, "BITLY_ACCESS_TOKEN")
-    shorten_cek <- bitly_shorten_link(domain = "bit.ly", group_guid = NULL, long_url = link_cek[i], showRequestURL = TRUE)
-    short_link_cek <- as.character(shorten_cek$id)
+    #bitly_token <- bitly_auth()
+    #saveRDS(bitly_token, "BITLY_ACCESS_TOKEN")
+    #shorten_cek <- bitly_shorten_link(domain = "bit.ly", group_guid = NULL, long_url = link_cek[i], showRequestURL = TRUE)
+    #short_link_cek <- as.character(shorten_cek$id)
     
     baris <- nrow(data)
     data <- data.frame(No = baris+1,
                        Tanggal = Sys.Date(),
                        Judul = title_cek[i],
                        Kategori = categ_cek[i],
-                       Tautan = short_link_cek)
+                       Tautan = link_cek[i])
     
     dbWriteTable(conn = con, name = "INFOGRAPHIC", value = data, append = TRUE, row.names = FALSE, overwrite=FALSE)
     
