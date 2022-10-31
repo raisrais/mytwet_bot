@@ -25,9 +25,7 @@ jobs:
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
       - name: Instal paket PostgreSQL
         run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
-      - name: Instal paket urlshorteneR
-        run: Rscript -e 'install.packages("urlshorteneR", dependencies = TRUE)'
-      - name: Eksekusi Script save.R
+      - name: Eksekusi Script da_infographic.R
         run: Rscript save.R
      # Add new files in data folder, commit along with other modified files, push
       - name: Commit and push if it changed
